@@ -1,14 +1,16 @@
 # coding=utf-8
-import time
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.action_chains import ActionChains
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import Select
 
 
 class HomePage(object):
     products_list = (By.ID, 'homefeatured')
     product_button = (By.CLASS_NAME, 'button')
+    product_button_continue = (By.CLASS_NAME, "continue")
     product_name = (By.CLASS_NAME, 'product-name')
     product_box = (By.CLASS_NAME, 'ajax_block_product')
     proceed_button = (By.XPATH, '/html/body/div/div[1]/header/div[3]/div/div/div[4]/div[1]/div[2]/div[4]/a/span')
@@ -36,9 +38,7 @@ class HomePage(object):
         raise Exception("Products not found.")
 
     def get_description_product_added(self):
-        # Elemento product_added_description já existe inicialmente no HTML, mas é preenchido apenas em tempo de execução.
-        # Dessa forma, o uso do wait implícito não é possivel.
-        time.sleep(4)
+        WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable(self.product_button_continue))
         return self.driver.find_element(*self.product_added_description).text
 
     def proceed_to_checkout(self):
