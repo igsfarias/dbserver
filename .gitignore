@@ -1,0 +1,25 @@
+# IDEA Ignores #
+.idea/
+venv/
+
+
+# Other unwanted stuff
+*.log
+
+
+# Compiled source #
+###################
+*.pyc
+~$*
+
+# Folders 
+###################
+__pycache__/
+dbserver_testcases/__pycache__/
+reports/
+
+
+
+
+ 
+
